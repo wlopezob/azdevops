@@ -24,11 +24,11 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          $file = Get-Content pom.xml
-          # Read the version with something like this:
-          # $version = Select-Xml -Content $file -XPath "//version"
-          # Then update the Release name:
-          Write-Host "##vso[release.updatereleasename]$version"
+          [xml]$pomXml = Get-Content .\pom.xml
+          # version
+          Write-Host $pomXml.project.version
+          $version=$pomXml.project.version
+          Write-Host "##vso[task.setvariable variable=version]$version"
         workingDirectory: '$(Build.SourcesDirectory)'
     - task: Docker@2
       inputs:
