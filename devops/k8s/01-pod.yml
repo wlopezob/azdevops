@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: ms-backend-init
+    labels:
+        tier: dev
+        app: ms-backend-init
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: ms-backend-init
+            tier: dev
+    template:
+        metadata:
+            labels:
+                tier: dev
+                app: ms-backend-init
+        spec:
+            containers:
+            - name: ms-backend-init
+              image: wlopezob/ms-init:latest
+              imagePullPolicy: Always
+              ports:
+              - name: ms-backend-init
+                containerPort: 9001
