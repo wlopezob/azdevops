@@ -20,6 +20,16 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          $file = Get-Content pom.xml
+          # Read the version with something like this:
+          # $version = Select-Xml -Content $file -XPath "//version"
+          # Then update the Release name:
+          Write-Host "##vso[release.updatereleasename]$version"
+        workingDirectory: '$(Build.SourcesDirectory)'
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerhub'
