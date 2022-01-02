@@ -30,7 +30,7 @@ stages:
       displayName: Build an image
       inputs:
         containerRegistry: 'dockerhub'
-        repository: 'ms-hola'
+        repository: 'wlopezob/ms-hola'
         command: 'buildAndPush'
         Dockerfile: 'dockerfile'
         buildContext: '$(Build.SourcesDirectory)'
