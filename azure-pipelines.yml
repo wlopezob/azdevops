@@ -32,7 +32,8 @@ stages:
         containerRegistry: 'dockerhub'
         repository: 'ms-hola'
         command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
+        Dockerfile: 'dockerfile'
+        buildContext: '$(Build.SourcesDirectory)'
         tags: '$(tag)'
         addPipelineData: false
         addBaseImageData: false
