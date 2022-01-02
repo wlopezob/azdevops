@@ -7,5 +7,5 @@ RUN mvn -e -B package
 
 FROM gcr.io/distroless/java:11-nonroot
 COPY --from=builder /usr/home/app/target/*.jar app.jar
-EXPOSE 8080
+EXPOSE 8084
 CMD ["app.jar"]

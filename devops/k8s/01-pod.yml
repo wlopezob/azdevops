@@ -19,7 +19,7 @@ spec:
         spec:
             containers:
             - name: ms-backend-init
-              image: wlopezob/ms-init:latest
+              image: wlopezob/ms-hola:276
               imagePullPolicy: Always
               ports:
               - name: ms-backend-init
