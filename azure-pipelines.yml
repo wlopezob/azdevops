@@ -21,7 +21,7 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - task: PowerShell@2
-      displayName: Obtener la version del ms-app
+      displayName: Obtener la version del pom.xml
       inputs:
         targetType: 'inline'
         script: |
@@ -34,7 +34,7 @@ stages:
           Write-Host "##vso[task.setvariable variable=version]$version"
         workingDirectory: '$(Build.SourcesDirectory)'
     - task: Docker@2
-      displayName: "Build an pushimage version"
+      displayName: "Build an push image version"
       inputs:
         containerRegistry: 'dockerhub'
         repository: 'wlopezob/ms-hola'
@@ -63,8 +63,6 @@ stages:
     #     cat devops/k8s/01-pod.yml
     - script: |
           echo $(kube_config) | base64 -d > config
-          cat config
-          ls -la
       displayName: Creacion kubeconfig
     
     - task: KubectlInstaller@0
@@ -79,19 +77,7 @@ stages:
         regionName: 'us-east-1'
         scriptType: 'inline'
         inlineScript: |
-          ls -la
-          ls -la $(Build.SourcesDirectory)/devops/k8s
           kubectl apply -f $(Build.SourcesDirectory)/devops/k8s/. --kubeconfig=config
         disableAutoCwd: true
         workingDirectory: '$(Build.SourcesDirectory)'
         failOnStandardError: true
-
-
-    # - task: Kubernetes@1
-    #   inputs:
-    #     connectionType: 'None'
-    #     command: 'apply'
-    #     arguments: '-f . --kubeconfig=config'
-    #     secretType: 'generic'
-    #     forceUpdate: false
-    #     outputFormat: 'none'
