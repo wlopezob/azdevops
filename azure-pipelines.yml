@@ -72,13 +72,13 @@ stages:
           echo $(KUBECONFIG) | base64 -d > config
           cat config
     
-    # - task: Kubernetes@1
-    #   inputs:
-    #     connectionType: 'None'
-    #     command: 'apply'
-    #     useConfigurationFile: true
-    #     configuration: '.'
-    #     arguments: '--kubeconfig=config'
-    #     secretType: 'generic'
-    #     forceUpdate: false
-    #     outputFormat: 'none'
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'None'
+        command: 'apply'
+        useConfigurationFile: true
+        configuration: '.'
+        arguments: '--kubeconfig=config'
+        secretType: 'generic'
+        forceUpdate: false
+        outputFormat: 'none'
