@@ -68,11 +68,6 @@ stages:
         enableTelemetry: true
     # - script: |
     #     cat devops/k8s/01-pod.yml
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: |
-          # Write your commands here
-          
-          echo %KUBE_CONFIG%
+    - script: |
+          echo ${kube_config}
     
