@@ -94,7 +94,8 @@ stages:
         scriptType: 'inline'
         inlineScript: |
           ls -la
-          kubectl apply -f . --kubeconfig=config
+          ls -la $(Build.SourcesDirectory)/devops/k8s
+          kubectl apply -f $(Build.SourcesDirectory)/devops/k8s/. --kubeconfig=config
         disableAutoCwd: true
         workingDirectory: '$(Build.SourcesDirectory)'
         failOnStandardError: true
