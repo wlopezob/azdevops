@@ -94,7 +94,7 @@ stages:
         scriptType: 'inline'
         inlineScript: |
           ls -la
-          kubectl version
+          kubectl apply -f . --kubeconfig=config
         disableAutoCwd: true
         workingDirectory: '$(Build.SourcesDirectory)'
         failOnStandardError: true
