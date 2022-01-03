@@ -78,10 +78,7 @@ stages:
       inputs:
         connectionType: 'None'
         command: 'apply'
-        useConfigurationFile: true
-        configurationType: 'inline'
-        inline: '.'
-        arguments: '--kubeconfig=config'
+        arguments: '-f . --kubeconfig=config'
         secretType: 'generic'
         forceUpdate: false
         outputFormat: 'none'
