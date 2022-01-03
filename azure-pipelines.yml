@@ -84,21 +84,25 @@ stages:
     - task: KubectlInstaller@0
       inputs:
         kubectlVersion: 'latest'
-    # - task: AWSShellScript@1
-    #   inputs:
-    #     awsCredentials: 'awscli'
-    #     regionName: 'us-east-1'
-    #     scriptType: 'inline'
-    #     inlineScript: 'kubectl apply -f . --kubeconfig=config'
-    #     disableAutoCwd: true
-    #     workingDirectory: '$(Build.SourcesDirectory)'
-    #     failOnStandardError: true
+    
 
-    - task: Kubernetes@1
+
+    - task: AWSShellScript@1
       inputs:
-        connectionType: 'None'
-        command: 'apply'
-        arguments: '-f . --kubeconfig=config'
-        secretType: 'generic'
-        forceUpdate: false
-        outputFormat: 'none'
+        awsCredentials: 'awscli'
+        regionName: 'us-east-1'
+        scriptType: 'inline'
+        inlineScript: 'ls -la'
+        disableAutoCwd: true
+        workingDirectory: '$(Build.SourcesDirectory)'
+        failOnStandardError: true
+
+
+    # - task: Kubernetes@1
+    #   inputs:
+    #     connectionType: 'None'
+    #     command: 'apply'
+    #     arguments: '-f . --kubeconfig=config'
+    #     secretType: 'generic'
+    #     forceUpdate: false
+    #     outputFormat: 'none'
