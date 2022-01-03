@@ -40,14 +40,31 @@ stages:
         command: 'login'
         addPipelineData: false
         addBaseImageData: false
-    - task: Docker@2
-      displayName: "Build an pushimage version"
+    # - task: Docker@2
+    #   displayName: "Build an pushimage version"
+    #   inputs:
+    #     containerRegistry: 'dockerhub'
+    #     repository: 'wlopezob/ms-hola'
+    #     command: 'buildAndPush'
+    #     Dockerfile: 'dockerfile'
+    #     buildContext: '$(Build.SourcesDirectory)'
+    #     tags: '$(version)'
+    #     addPipelineData: false
+    #     addBaseImageData: false
+    - task: replacetokens@4
       inputs:
-        containerRegistry: 'dockerhub'
-        repository: 'wlopezob/ms-hola'
-        command: 'buildAndPush'
-        Dockerfile: 'dockerfile'
-        buildContext: '$(Build.SourcesDirectory)'
-        tags: '$(version)'
-        addPipelineData: false
-        addBaseImageData: false
+        targetFiles: '**/devops/k8s/01-pod.yml'
+        encoding: 'auto'
+        tokenPattern: 'doublebraces'
+        writeBOM: true
+        actionOnMissing: 'warn'
+        keepToken: false
+        actionOnNoFiles: 'continue'
+        enableTransforms: false
+        useLegacyPattern: false
+        emptyValue: 'VERSION'
+        defaultValue: '$(version)'
+        enableTelemetry: true
+    - script: |
+        cat devops/k8s/01-pod.yml
+
