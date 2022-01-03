@@ -92,7 +92,9 @@ stages:
         awsCredentials: 'awscli'
         regionName: 'us-east-1'
         scriptType: 'inline'
-        inlineScript: 'ls -la'
+        inlineScript: |
+          ls -la
+          kubectl version
         disableAutoCwd: true
         workingDirectory: '$(Build.SourcesDirectory)'
         failOnStandardError: true
