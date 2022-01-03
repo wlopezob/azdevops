@@ -33,25 +33,17 @@ stages:
           Write-Host $version
           Write-Host "##vso[task.setvariable variable=version]$version"
         workingDirectory: '$(Build.SourcesDirectory)'
-    # - task: Docker@2
-    #   displayName: Docker login
-    #   inputs:
-    #     containerRegistry: 'dockerhub'
-    #     command: 'login'
-    #     addPipelineData: false
-    #     addBaseImageData: false
-
-    # - task: Docker@2
-    #   displayName: "Build an pushimage version"
-    #   inputs:
-    #     containerRegistry: 'dockerhub'
-    #     repository: 'wlopezob/ms-hola'
-    #     command: 'buildAndPush'
-    #     Dockerfile: 'dockerfile'
-    #     buildContext: '$(Build.SourcesDirectory)'
-    #     tags: '$(version)'
-    #     addPipelineData: false
-    #     addBaseImageData: false
+    - task: Docker@2
+      displayName: "Build an pushimage version"
+      inputs:
+        containerRegistry: 'dockerhub'
+        repository: 'wlopezob/ms-hola'
+        command: 'buildAndPush'
+        Dockerfile: 'dockerfile'
+        buildContext: '$(Build.SourcesDirectory)'
+        tags: '$(version)'
+        addPipelineData: false
+        addBaseImageData: false
     - task: replacetokens@4
       displayName: 'Estableciendo la version en yml'
       inputs:
