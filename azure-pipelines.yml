@@ -78,7 +78,8 @@ stages:
       inputs:
         awsCredentials: 'awscli'
         regionName: 'us-east-1'
-        awsCommand: 'eks list-clusters'
+        awsCommand: 'eks'
+        awsSubCommand: 'list-clusters'
 
     # - task: Kubernetes@1
     #   inputs:
