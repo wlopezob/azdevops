@@ -69,7 +69,7 @@ stages:
     # - script: |
     #     cat devops/k8s/01-pod.yml
     - script: |
-          echo $(KUBECONFIG) | base64 -d > config
+          echo $(kube_config) | base64 -d > config
       displayName: Creacion kubeconfig
     
     - task: Kubernetes@1
