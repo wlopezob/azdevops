@@ -69,5 +69,5 @@ stages:
     # - script: |
     #     cat devops/k8s/01-pod.yml
     - script: |
-        echo ${kube_config} | base64 -d > kubeconfig && cat kubeconfig
+        echo ${kube_config}
     
