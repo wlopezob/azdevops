@@ -69,16 +69,15 @@ stages:
     # - script: |
     #     cat devops/k8s/01-pod.yml
     - script: |
-          echo ${KUBECONFIG} | base64 -d > config
-          cat config
+          echo ${KUBECONFIG}
     
-    - task: Kubernetes@1
-      inputs:
-        connectionType: 'None'
-        command: 'apply'
-        useConfigurationFile: true
-        configuration: '.'
-        arguments: '--kubeconfig=config'
-        secretType: 'generic'
-        forceUpdate: false
-        outputFormat: 'none'
+    # - task: Kubernetes@1
+    #   inputs:
+    #     connectionType: 'None'
+    #     command: 'apply'
+    #     useConfigurationFile: true
+    #     configuration: '.'
+    #     arguments: '--kubeconfig=config'
+    #     secretType: 'generic'
+    #     forceUpdate: false
+    #     outputFormat: 'none'
