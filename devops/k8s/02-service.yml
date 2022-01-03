@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: ms-backend-init
+spec:
+    type: LoadBalancer
+    selector:
+        tier: dev
+        app: ms-backend-init
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8084
