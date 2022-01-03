@@ -74,11 +74,17 @@ stages:
           ls -la
       displayName: Creacion kubeconfig
     
-    - task: Kubernetes@1
+    - task: AWSCLI@1
       inputs:
-        connectionType: 'None'
-        command: 'apply'
-        arguments: '-f . --kubeconfig=config'
-        secretType: 'generic'
-        forceUpdate: false
-        outputFormat: 'none'
+        awsCredentials: 'awscli'
+        regionName: 'us-east-1'
+        awsCommand: 'eks list-clusters'
+
+    # - task: Kubernetes@1
+    #   inputs:
+    #     connectionType: 'None'
+    #     command: 'apply'
+    #     arguments: '-f . --kubeconfig=config'
+    #     secretType: 'generic'
+    #     forceUpdate: false
+    #     outputFormat: 'none'
