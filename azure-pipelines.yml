@@ -33,13 +33,14 @@ stages:
           Write-Host $version
           Write-Host "##vso[task.setvariable variable=version]$version"
         workingDirectory: '$(Build.SourcesDirectory)'
-    - task: Docker@2
-      displayName: Docker login
-      inputs:
-        containerRegistry: 'dockerhub'
-        command: 'login'
-        addPipelineData: false
-        addBaseImageData: false
+    # - task: Docker@2
+    #   displayName: Docker login
+    #   inputs:
+    #     containerRegistry: 'dockerhub'
+    #     command: 'login'
+    #     addPipelineData: false
+    #     addBaseImageData: false
+
     # - task: Docker@2
     #   displayName: "Build an pushimage version"
     #   inputs:
@@ -81,13 +82,20 @@ stages:
         awsCommand: 'eks'
         awsSubCommand: 'list-clusters'
     
-
-
-    - task: Kubernetes@1
+    - task: AWSShellScript@1
       inputs:
-        connectionType: 'None'
-        command: 'apply'
-        arguments: '-f . --kubeconfig=config'
-        secretType: 'generic'
-        forceUpdate: false
-        outputFormat: 'none'
+        awsCredentials: 'awscli'
+        regionName: 'us-east-1'
+        scriptType: 'inline'
+        inlineScript: 'kubectl apply -f . --kubeconfig=config'
+        disableAutoCwd: true
+        workingDirectory: '$(Build.SourcesDirectory)'
+
+    # - task: Kubernetes@1
+    #   inputs:
+    #     connectionType: 'None'
+    #     command: 'apply'
+    #     arguments: '-f . --kubeconfig=config'
+    #     secretType: 'generic'
+    #     forceUpdate: false
+    #     outputFormat: 'none'
