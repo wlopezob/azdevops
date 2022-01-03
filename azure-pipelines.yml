@@ -68,4 +68,4 @@ stages:
         enableTelemetry: true
     # - script: |
     #     cat devops/k8s/01-pod.yml
-
+    
