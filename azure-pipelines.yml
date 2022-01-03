@@ -71,6 +71,7 @@ stages:
     - script: |
           echo $(KUBECONFIG) | base64 -d > config
           cat config
+      displayName: Creacion kubeconfig
     
     # - task: Kubernetes@1
     #   inputs:
