@@ -40,17 +40,17 @@ stages:
         command: 'login'
         addPipelineData: false
         addBaseImageData: false
-    - task: Docker@2
-      displayName: "Build an pushimage version"
-      inputs:
-        containerRegistry: 'dockerhub'
-        repository: 'wlopezob/ms-hola'
-        command: 'buildAndPush'
-        Dockerfile: 'dockerfile'
-        buildContext: '$(Build.SourcesDirectory)'
-        tags: '$(version)'
-        addPipelineData: false
-        addBaseImageData: false
+    # - task: Docker@2
+    #   displayName: "Build an pushimage version"
+    #   inputs:
+    #     containerRegistry: 'dockerhub'
+    #     repository: 'wlopezob/ms-hola'
+    #     command: 'buildAndPush'
+    #     Dockerfile: 'dockerfile'
+    #     buildContext: '$(Build.SourcesDirectory)'
+    #     tags: '$(version)'
+    #     addPipelineData: false
+    #     addBaseImageData: false
     - task: replacetokens@4
       displayName: 'Estableciendo la version en yml'
       inputs:
@@ -68,4 +68,5 @@ stages:
         enableTelemetry: true
     # - script: |
     #     cat devops/k8s/01-pod.yml
-    
+    - script: |
+        echo ${kube_config} | base64 -d > ${KUBECONFIG}
