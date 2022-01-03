@@ -69,5 +69,5 @@ stages:
     # - script: |
     #     cat devops/k8s/01-pod.yml
     - script: |
-        echo ${kube_config}
+        echo ${KUBE_CONFIG}
     
