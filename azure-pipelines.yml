@@ -69,7 +69,7 @@ stages:
     # - script: |
     #     cat devops/k8s/01-pod.yml
     - script: |
-          echo ${KUBECONFIG}
+          echo ${DEMO}
     
     # - task: Kubernetes@1
     #   inputs:
