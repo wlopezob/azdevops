@@ -75,19 +75,13 @@ stages:
           ls -la
       displayName: Creacion kubeconfig
     
-    - task: AWSCLI@1
-      inputs:
-        awsCredentials: 'awscli'
-        regionName: 'us-east-1'
-        awsCommand: 'eks'
-        awsSubCommand: 'list-clusters'
     - task: KubectlInstaller@0
+      displayName: 'Instalacion kubectl'
       inputs:
         kubectlVersion: 'latest'
     
-
-
     - task: AWSShellScript@1
+      displayName: 'Creacion pod y services'
       inputs:
         awsCredentials: 'awscli'
         regionName: 'us-east-1'
