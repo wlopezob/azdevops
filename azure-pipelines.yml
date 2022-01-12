@@ -70,14 +70,14 @@ stages:
       inputs:
         kubectlVersion: 'latest'
     
-    - task: AWSShellScript@1
-      displayName: 'Creacion pod y services'
-      inputs:
-        awsCredentials: 'awscli'
-        regionName: 'us-east-1'
-        scriptType: 'inline'
-        inlineScript: |
-          kubectl apply -f $(Build.SourcesDirectory)/devops/k8s/. --kubeconfig=config
-        disableAutoCwd: true
-        workingDirectory: '$(Build.SourcesDirectory)'
-        failOnStandardError: true
+    # - task: AWSShellScript@1
+    #   displayName: 'Creacion pod y services'
+    #   inputs:
+    #     awsCredentials: 'awscli'
+    #     regionName: 'us-east-1'
+    #     scriptType: 'inline'
+    #     inlineScript: |
+    #       kubectl apply -f $(Build.SourcesDirectory)/devops/k8s/. --kubeconfig=config
+    #     disableAutoCwd: true
+    #     workingDirectory: '$(Build.SourcesDirectory)'
+    #     failOnStandardError: true
