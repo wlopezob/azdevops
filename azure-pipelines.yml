@@ -37,7 +37,6 @@ stages:
       displayName: "Clean and Install"
       inputs:
         mavenPomFile: 'pom.xml'
-        goals: 
         publishJUnitResults: false
         javaHomeOption: 'JDKVersion'
         mavenVersionOption: 'Default'
