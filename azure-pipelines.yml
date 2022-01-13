@@ -15,8 +15,8 @@ stages:
 - stage: Build
   displayName: Build image
   jobs:
-  - job: Build
-    displayName: Build
+  - job: Preparation
+    displayName: Preparacion de entorno
     pool:
       vmImage: ubuntu-latest
     steps:
@@ -33,6 +33,12 @@ stages:
           Write-Host $version
           Write-Host "##vso[task.setvariable variable=version]$version"
         workingDirectory: '$(Build.SourcesDirectory)'
+  
+  - job: SATS
+    displayName: SATS
+    pool:
+      vmImage: ubuntu-latest
+    steps:
     - task: Maven@3
       displayName: "Clean and Install"
       inputs:
@@ -49,6 +55,7 @@ stages:
         sonarQubeRunAnalysis: false
         checkStyleRunAnalysis: true
     - task: PublishCodeCoverageResults@1
+      displayName: "Publicar reporte de cobertura"
       inputs:
         codeCoverageTool: 'JaCoCo'
         summaryFileLocation: '$(Build.SourcesDirectory)/target/site/jacoco/jacoco.xml'
