@@ -49,6 +49,6 @@ public class HelloController {
   }
 
   public String demo() {
-     return " demo";
+    return " demo";
   }
 }
