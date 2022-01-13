@@ -15,8 +15,8 @@ stages:
 - stage: Build
   displayName: Build image
   jobs:
-  - job: Preparation
-    displayName: Preparacion de entorno
+  - job: Build
+    displayName: Build
     pool:
       vmImage: ubuntu-latest
     steps:
@@ -33,12 +33,6 @@ stages:
           Write-Host $version
           Write-Host "##vso[task.setvariable variable=version]$version"
         workingDirectory: '$(Build.SourcesDirectory)'
-  
-  - job: SATS
-    displayName: SATS
-    pool:
-      vmImage: ubuntu-latest
-    steps:
     - task: Maven@3
       displayName: "Clean and Install"
       inputs:
