@@ -50,8 +50,10 @@ stages:
         checkStyleRunAnalysis: true
     - task: reportgenerator@5
       inputs:
-        reports: 'jacoco.xml'
-        targetdir: '$(Build.SourcesDirectory)/site/jacoco'
+        reports: '$(Build.SourcesDirectory)/site/jacoco/jacoco.xml'
+        targetdir: '$(Build.SourcesDirectory)/CodeCoverage'
+        reporttypes: 'HtmlInline\_AzurePipelines;Cobertura;Badges'
+
     - task: Docker@2
       displayName: "Build an push image version"
       inputs:
