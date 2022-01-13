@@ -50,7 +50,7 @@ stages:
         checkStyleRunAnalysis: true
     - task: reportgenerator@5
       inputs:
-        reports: '$(Build.SourcesDirectory)/site/jacoco/jacoco.xml'
+        reports: '$(Build.SourcesDirectory)/target/site/jacoco/jacoco.xml'
         targetdir: '$(Build.SourcesDirectory)/CodeCoverage'
         reporttypes: 'HtmlInline\_AzurePipelines;Cobertura;Badges'
 
