@@ -1,6 +1,6 @@
 FROM maven:3.6.3-jdk-11 as builder
 WORKDIR /usr/home/app
-COPY google_checks_8.33.xml pom.xml .
+COPY google_checks_8.33.xml pom.xml ./
 RUN mvn -e -B dependency:resolve
 COPY src ./src
 RUN mvn -e -B package
