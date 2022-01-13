@@ -40,6 +40,9 @@ stages:
         goals: 'test'
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        testRunTitle: 'Pruebas Unitarias'
+        codeCoverageToolOption: 'JaCoCo'
+        codeCoverageFailIfEmpty: true
         javaHomeOption: 'JDKVersion'
         jdkVersionOption: '1.11'
         mavenVersionOption: 'Default'
