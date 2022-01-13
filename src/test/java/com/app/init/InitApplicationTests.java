@@ -19,7 +19,7 @@ class InitApplicationTests {
 
   @Test
   void holaTest() {
-    Assertions.assertNull(helloController.hola());
+    Assertions.assertNotNull(helloController.hola());
   }
 
 }
