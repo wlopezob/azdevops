@@ -16,12 +16,12 @@ stages:
   displayName: Build image
   jobs:
   - job: Build
-    displayName: CI/CD Control Maderero
+    displayName: CI/CD
     pool:
       vmImage: ubuntu-latest
     steps:
     - task: PowerShell@2
-      displayName: Obtener la version del pom.xml
+      displayName: Get version pom.xml
       inputs:
         targetType: 'inline'
         script: |
@@ -34,7 +34,7 @@ stages:
           Write-Host "##vso[task.setvariable variable=version]$version"
         workingDirectory: '$(Build.SourcesDirectory)'
     - task: Maven@3
-      displayName: "Clean and Install"
+      displayName: "Test unitario, CheckStyle, Cobertura"
       inputs:
         mavenPomFile: 'pom.xml'
         goals: 'test'
@@ -68,7 +68,7 @@ stages:
         addPipelineData: false
         addBaseImageData: false
     - task: replacetokens@4
-      displayName: 'Estableciendo la version en yml'
+      displayName: 'k8s: Set version pod.yml'
       inputs:
         targetFiles: '**/devops/k8s/01-pod.yml'
         encoding: 'auto'
@@ -86,10 +86,10 @@ stages:
     #     cat devops/k8s/01-pod.yml
     - script: |
           echo $(kube_config) | base64 -d > config
-      displayName: Creacion kubeconfig
+      displayName: Create kubeconfig
     
     - task: KubectlInstaller@0
-      displayName: 'Instalacion kubectl'
+      displayName: 'Install kubectl'
       inputs:
         kubectlVersion: 'latest'
     
