@@ -6,6 +6,7 @@ Este repositorio contiene un pequeño ejemplo con spring boot, vamos a desplegar
 ## AzureDevops - Pipelines: Instalar las siguientes extensiones
 1. [AWS Toolkit for Azure DevOps](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)
 2. [Replace Tokens](https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens)
+3. [Sonarqube](https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarqube)
 
 ## Azure Pipelines: Crear variables:
 1. kube_config: contiene el valor base64 del archivo kube.config
