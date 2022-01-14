@@ -48,19 +48,21 @@ public class HelloController {
         .toString();
   }
 
+  private String valor = "demo";
+
   public String demo() {
-    return " demo";
+    return valor;
   }
 
   public String demo1() {
-    return " demo1";
+    return valor;
   }
 
   public String demo2() {
-    return " demo2";
+    return valor;
   }
 
   public String demo3() {
-    return " demo3";
+    return valor;
   }
 }
