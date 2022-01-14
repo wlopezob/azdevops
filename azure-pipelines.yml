@@ -20,6 +20,7 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
+    
     - task: PowerShell@2
       displayName: Get version pom.xml
       inputs:
@@ -33,6 +34,11 @@ stages:
           Write-Host $version
           Write-Host "##vso[task.setvariable variable=version]$version"
         workingDirectory: '$(Build.SourcesDirectory)'
+    - task: SonarQubePrepare@5
+      displayName: Prepare configuration Sonarqube
+      inputs:
+        SonarQube: 'control-maderero'
+        scannerMode: 'Other'
     - task: Maven@3
       displayName: "Test unitario, CheckStyle, Cobertura"
       inputs:
@@ -48,6 +54,7 @@ stages:
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
         checkStyleRunAnalysis: true
+    
     - task: PublishCodeCoverageResults@1
       displayName: "Publicar reporte de cobertura"
       inputs:
