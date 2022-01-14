@@ -65,4 +65,12 @@ public class HelloController {
   public String demo3() {
     return valor;
   }
+
+  public String demo4() {
+    return valor;
+  }
+
+  public String demo5() {
+    return valor;
+  }
 }
