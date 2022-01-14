@@ -68,42 +68,41 @@ stages:
         reportDirectory: '$(Build.SourcesDirectory)/target/site/jacoco'
         failIfCoverageEmpty: true
 
-    - task: Docker@2
-      displayName: "Build an push image version"
-      inputs:
-        containerRegistry: 'dockerhub'
-        repository: 'wlopezob/ms-hola'
-        command: 'buildAndPush'
-        Dockerfile: 'dockerfile'
-        buildContext: '$(Build.SourcesDirectory)'
-        tags: '$(version)'
-        addPipelineData: false
-        addBaseImageData: false
-    - task: replacetokens@4
-      displayName: 'k8s: Set version pod.yml'
-      inputs:
-        targetFiles: '**/devops/k8s/01-pod.yml'
-        encoding: 'auto'
-        tokenPattern: 'doublebraces'
-        writeBOM: true
-        actionOnMissing: 'warn'
-        keepToken: false
-        actionOnNoFiles: 'continue'
-        enableTransforms: false
-        useLegacyPattern: false
-        emptyValue: 'VERSION'
-        defaultValue: '$(version)'
-        enableTelemetry: true
+    # - task: Docker@2
+    #   displayName: "Build an push image version"
+    #   inputs:
+    #     containerRegistry: 'dockerhub'
+    #     repository: 'wlopezob/ms-hola'
+    #     command: 'buildAndPush'
+    #     Dockerfile: 'dockerfile'
+    #     buildContext: '$(Build.SourcesDirectory)'
+    #     tags: '$(version)'
+    #     addPipelineData: false
+    #     addBaseImageData: false
+    # - task: replacetokens@4
+    #   displayName: 'k8s: Set version pod.yml'
+    #   inputs:
+    #     targetFiles: '**/devops/k8s/01-pod.yml'
+    #     encoding: 'auto'
+    #     tokenPattern: 'doublebraces'
+    #     writeBOM: true
+    #     actionOnMissing: 'warn'
+    #     keepToken: false
+    #     actionOnNoFiles: 'continue'
+    #     enableTransforms: false
+    #     useLegacyPattern: false
+    #     emptyValue: 'VERSION'
+    #     defaultValue: '$(version)'
+    #     enableTelemetry: true
+
     # - script: |
-    #     cat devops/k8s/01-pod.yml
-    - script: |
-          echo $(kube_config) | base64 -d > config
-      displayName: Create kubeconfig
+    #       echo $(kube_config) | base64 -d > config
+    #   displayName: Create kubeconfig
     
-    - task: KubectlInstaller@0
-      displayName: 'Install kubectl'
-      inputs:
-        kubectlVersion: 'latest'
+    # - task: KubectlInstaller@0
+    #   displayName: 'Install kubectl'
+    #   inputs:
+    #     kubectlVersion: 'latest'
     
     # - task: AWSShellScript@1
     #   displayName: 'Creacion pod y services'
