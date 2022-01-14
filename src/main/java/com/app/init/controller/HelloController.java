@@ -53,14 +53,14 @@ public class HelloController {
   }
 
   public String demo1() {
-    return " demo";
+    return " demo1";
   }
 
   public String demo2() {
-    return " demo";
+    return " demo2";
   }
 
   public String demo3() {
-    return " demo";
+    return " demo3";
   }
 }
