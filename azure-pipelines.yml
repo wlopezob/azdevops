@@ -40,7 +40,7 @@ stages:
         SonarQube: 'control-maderero'
         scannerMode: 'Other'
     - task: Maven@3
-      displayName: "Test unitario, CheckStyle, Cobertura"
+      displayName: "Test unitario, CheckStyle, Cobertura, Sonar"
       inputs:
         mavenPomFile: 'pom.xml'
         goals: 'test'
@@ -56,7 +56,10 @@ stages:
         isJacocoCoverageReportXML: true
         sqMavenPluginVersionChoice: 'latest'
         checkStyleRunAnalysis: true
-
+    - task: SonarQubePublish@5
+      displayName: Publish Sonar Scanner
+      inputs:
+        pollingTimeoutSec: '300'
     - task: PublishCodeCoverageResults@1
       displayName: "Publicar reporte de cobertura"
       inputs:
