@@ -51,4 +51,16 @@ public class HelloController {
   public String demo() {
     return " demo";
   }
+
+  public String demo1() {
+    return " demo";
+  }
+
+  public String demo2() {
+    return " demo";
+  }
+
+  public String demo3() {
+    return " demo";
+  }
 }
