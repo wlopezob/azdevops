@@ -54,7 +54,8 @@ stages:
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
         checkStyleRunAnalysis: true
-    
+    - task: SonarQubeAnalyze@5
+      displayName: Run Sonar Scanner
     - task: PublishCodeCoverageResults@1
       displayName: "Publicar reporte de cobertura"
       inputs:
