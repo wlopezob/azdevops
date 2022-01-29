@@ -9,6 +9,16 @@ Este repositorio contiene un pequeño ejemplo con spring boot, vamos a desplegar
 3. [Sonarqube](https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarqube)
 4. [SonarQube build breaker](https://marketplace.visualstudio.com/items?itemName=SimondeLang.sonar-buildbreaker)
 
+###################### AWS ############################################
+#listar cluster aws
+aws eks list-clusters
+#descargar kubeconfig de aws
+aws eks update-kubeconfig --name cluster-maderera 
+#ver actual contexto
+kubectl config current-context
+#usar el contexto nuevo
+kubectl config use-context cluster-maderera
+
 ## Azure Pipelines: Crear variables:
 1. kube_config: contiene el valor base64 del archivo kube.config
 ```
