@@ -23,6 +23,6 @@ kubectl config use-context cluster-maderera
 ## Azure Pipelines: Crear variables:
 1. kube_config: contiene el valor base64 del archivo kube.config
 ```
-cat ~/.kube/config | base64 > base64.txt
+cat ~/.kube/config | base64 -w 0 > base64.txt
 //copiar el contenido del archivo base64.txt (borrar espacio en blancos)
 ```
